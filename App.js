@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, Button, Alert, ImageBackground, Touchabl
 from 'react-native';
 import firebase from 'firebase';
 
+//Se inicializa FireBase
 firebase.initializeApp({
     apiKey: "AIzaSyC3HDZ41Ix0-_W38YbWUwRUgaTaAYmuOnk",
     authDomain: "reactcultivia.firebaseapp.com",
@@ -27,11 +28,17 @@ class CultivIA extends Component {
   }
   
   saludo = () => { Alert.alert('Hola !')}
+  
   help = () => { Alert.alert('Te auydo...')}
+  
   contactenos = () => { Alert.alert('Twiter, Facebook, Instagram')}
+   
   registrar = () => { 
+    //Se confirma que las contraseñas coinsidan
     if (this.state.pass == this.state.confpass){
+      //Se registra el usuario en FireBase
       firebase.auth().createUserWithEmailAndPassword(this.state.user, this.state.pass).catch(function(error) {
+        //Si hay algun error se pone en un alert
         var errorCode = error.code;
         var errorMessage = error.message;
         Alert.alert(errorMessage)
